@@ -1,0 +1,101 @@
+export type Report={label:string;url:string};
+export type Project={id:string;title:string;category:string;description:string;problem:string;approach:string;contribution:string;technologies:string;url:string;reports:Report[]};
+export type Portfolio={name:string;headline:string;subheadline:string;role:string;intro:string;about:string;education:string;skills:string;github:string;email:string;internshipCompany:string;internshipRole:string;internshipDates:string;internshipDescription:string;internshipCertificate:string;projects:Project[]};
+export const initialPortfolio:Portfolio={
+  "name": "Pavan Kumar Goud Amikula",
+  "headline": "Curious by nature.",
+  "subheadline": "Driven to solve.",
+  "role": "Computer Science Student",
+  "intro": "I'm a Computer Science master's student at BTH. I turn complex questions into experiments, compare the evidence, and build usable applications. I'm eager to learn, collaborate, and work through challenging problems.",
+  "about": "I like understanding why a system works, where it fails, and how to make it useful. My projects connect machine learning, computer vision, explainability, and backend development. In my CNN architecture comparison, I implemented and trained InceptionV3 and MobileNetV3, and worked with my coauthor on preprocessing, evaluation, confusion matrix analysis, and writing. I bring that same curiosity to new problems: ask good questions, test alternatives, learn from the results, and keep improving.",
+  "education": "M.Sc. Computer Science · Blekinge Institute of Technology · Sweden",
+  "skills": "Python, SQL, NumPy, pandas, scikit-learn, TensorFlow, Keras, PyTorch, LightGBM, XGBoost, SHAP, LIME, Grad-CAM, FastAPI, Flask, PostgreSQL, Docker, Kubernetes, Git",
+  "github": "https://github.com/Pavan-amikula",
+  "email": "",
+  "internshipCompany": "Nukkad Shops Technologies (India) Private Limited",
+  "internshipRole": "Intern",
+  "internshipDates": "May 13, 2025 – August 12, 2025",
+  "internshipDescription": "Completed an internship, bringing my learning into a professional team environment. The completion certificate confirms my role and dates.",
+  "internshipCertificate": "/reports/internship-completion-certificate.pdf",
+  "projects": [
+    {
+      "id": "finance",
+      "title": "V4FinBench",
+      "category": "Machine learning",
+      "description": "Financial distress prediction under extreme class imbalance, with evaluation across companies and over time.",
+      "problem": "Rare distress events and time-dependent data can make a strong-looking model unreliable.",
+      "approach": "Compare boosted models using company-grouped validation, temporal testing, feature-timing audits, and SHAP.",
+      "contribution": "A portfolio benchmark exploring careful evaluation, leakage risks, and explainability.",
+      "technologies": "LightGBM, XGBoost, CatBoost, SHAP",
+      "url": "https://github.com/Pavan-amikula/V4FinBench",
+      "reports": []
+    },
+    {
+      "id": "maintenance",
+      "title": "Heavy Vehicle Predictive Maintenance",
+      "category": "Machine learning",
+      "description": "Exploring rare vehicle-failure classification through synthetic telemetry, model comparisons, and local explanations.",
+      "problem": "Missed failures can be more costly than false alarms, while failure examples are scarce.",
+      "approach": "Aggregate sensor features, handle imbalance with SMOTE, compare classifiers and ensembles, evaluate error costs, and connect predictions to a Flask interface.",
+      "contribution": "Coauthored the academic report with Naga Sreerama Pradyumna Tata. The report documents the shared pipeline; it does not assign individual implementation tasks.",
+      "technologies": "scikit-learn, SMOTE, LIME, Flask",
+      "url": "https://github.com/Pavan-amikula/Heavy-Vehicle-Predictive-Maintenance",
+      "reports": [
+        {
+          "label": "Predictive maintenance report",
+          "url": "/reports/predictive-maintenance-report.pdf"
+        }
+      ]
+    },
+    {
+      "id": "brain",
+      "title": "Brain Tumor Classification",
+      "category": "Computer vision",
+      "description": "Comparing CNNs and ensemble explanations to understand MRI classification beyond overall accuracy.",
+      "problem": "High aggregate accuracy can hide class-specific errors and the trade-off between efficiency and reliability.",
+      "approach": "Compare CNN architectures with per-class metrics and confusion matrices, then investigate ensemble learning and Grad-CAM explanations.",
+      "contribution": "Implemented and trained InceptionV3 and MobileNetV3 in the CNN comparison. Jointly contributed preprocessing, evaluation, confusion matrix analysis, and writing. Also a named major-project team member and ensemble-study coauthor.",
+      "technologies": "TensorFlow, Keras, InceptionV3, MobileNetV3, Grad-CAM",
+      "url": "https://github.com/Pavan-amikula/Brain-Tumor-Classification",
+      "reports": [
+        {
+          "label": "CNN comparison · my implementation role",
+          "url": "/reports/cnn-architecture-comparison.pdf"
+        },
+        {
+          "label": "Ensemble & explainable AI study",
+          "url": "/reports/ensemble-explainable-ai-study.pdf"
+        },
+        {
+          "label": "Major-project team report",
+          "url": "/reports/major-project-report.pdf"
+        }
+      ]
+    },
+    {
+      "id": "incident",
+      "title": "IncidentLab",
+      "category": "Cloud & backend",
+      "description": "Exploring cloud incident detection using multimodal telemetry and a model-serving API.",
+      "problem": "Signals from different parts of a cloud system can be difficult to connect during an incident.",
+      "approach": "Explore GRU and Isolation Forest models alongside a FastAPI serving layer and containerized infrastructure.",
+      "contribution": "A portfolio project connecting telemetry analysis, model serving, and cloud tooling.",
+      "technologies": "PyTorch, FastAPI, Docker, Kubernetes",
+      "url": "https://github.com/Pavan-amikula/IncidentLab",
+      "reports": []
+    },
+    {
+      "id": "campus",
+      "title": "CampusCart",
+      "category": "Cloud & backend",
+      "description": "An equipment-reservation application built around clear APIs and containerized microservices.",
+      "problem": "Equipment reservations need clear availability and consistent application workflows.",
+      "approach": "Organize the application into services with FastAPI, PostgreSQL, Docker, and Kubernetes.",
+      "contribution": "A portfolio application exploring service boundaries, data, and deployment.",
+      "technologies": "FastAPI, PostgreSQL, Docker, Kubernetes",
+      "url": "https://github.com/Pavan-amikula/campuscart",
+      "reports": []
+    }
+  ]
+};
+

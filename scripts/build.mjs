@@ -1,0 +1,20 @@
+import {build,createServer} from 'vite';
+import {readFile,writeFile} from 'node:fs/promises';
+const data=JSON.parse(await readFile('content.json','utf8'));
+const url='https://pavan-amikula.github.io/';
+const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+const description=`${data.name} (Pavan Amikula), Computer Science master's student at Blekinge Institute of Technology. Explore machine learning, computer vision and backend projects, research reports and contributions.`;
+const title=`${data.name} | Pavan Amikula — Computer Science Portfolio`;
+const person={'@type':'Person','@id':url+'#person',name:data.name,alternateName:['Pavan Amikula','Amikula Pavan Kumar Goud','Pavan Kumar Goud'],url,sameAs:[data.github],description:data.intro,knowsAbout:data.skills.split(',').map(s=>s.trim())};
+const schema={'@context':'https://schema.org','@graph':[person,{'@type':'WebSite','@id':url+'#website',url,name:data.name,alternateName:'Pavan Amikula',publisher:{'@id':url+'#person'}},{'@type':'ProfilePage','@id':url+'#profile',url,name:title,mainEntity:{'@id':url+'#person'}}]};
+const seo=`<title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="author" content="${escape(data.name)}"><meta name="robots" content="index,follow"><link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:site_name" content="${escape(data.name)}"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(title)}"><meta name="twitter:description" content="${escape(description)}"><script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script>`;
+const server=await createServer({server:{middlewareMode:true},appType:'custom'});
+let rendered;
+try{rendered=(await server.ssrLoadModule('/src/render.tsx')).render();}finally{await server.close();}
+await build();
+const html=await readFile('dist/index.html','utf8');
+await writeFile('dist/index.html',html.replace('<!--SEO-->',seo).replace('<!--CONTENT-->',rendered));
+await writeFile('dist/robots.txt',`User-agent: *\nAllow: /\nSitemap: ${url}sitemap.xml\n`);
+await writeFile('dist/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${url}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod></url></urlset>`);
+await writeFile('dist/.nojekyll','');
+console.log('Built static HTML, interactive bundle, structured data, robots.txt and sitemap.xml.');
